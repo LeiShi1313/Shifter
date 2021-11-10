@@ -18,8 +18,33 @@
 	<title>About</title>
 </svelte:head>
 
-<div class="content">
+<div class="content flex flex-col mt-30">
+
 	<h1>About this app</h1>
+
+	<button class="btn btn-active" role="button" aria-pressed="true">neutral</button> 
+<button class="btn btn-primary btn-active" role="button" aria-pressed="true">primary</button> 
+<button class="btn btn-secondary btn-active" role="button" aria-pressed="true">secondary</button> 
+<button class="btn btn-accent btn-active" role="button" aria-pressed="true">accent</button> 
+<button class="btn btn-link btn-active" role="button" aria-pressed="true">link</button>
+
+<div class="rounded-lg shadow bg-base-200 drawer h-52">
+	<input id="my-drawer" type="checkbox" class="drawer-toggle"> 
+	<div class="flex flex-col items-center justify-center drawer-content">
+	  <label for="my-drawer" class="btn btn-primary drawer-button">open menu</label>
+	</div> 
+	<div class="drawer-side">
+	  <label for="my-drawer" class="drawer-overlay"></label> 
+	  <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+		<li>
+		  <a>Menu Item</a>
+		</li> 
+		<li>
+		  <a>Menu Item</a>
+		</li>
+	  </ul>
+	</div>
+  </div>
 
 	<p>
 		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the

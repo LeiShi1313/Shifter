@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="/favicon.png" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		%svelte.head%
-	</head>
-	<body>
-		<div id="svelte">%svelte.body%</div>
-	</body>
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="/favicon.png" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<script>
+		try {
+			if(!('theme' in localStorage)) {
+				theme=document.querySelector('html').getAttribute('data-theme')
+				if(theme===null) {
+					theme=window.matchMedia('(prefers-color-scheme: dark)').matches
+						? 'dark'
+						:'light';
+				}
+				localStorage.theme=theme
+			}
+
+			document.querySelector('html').setAttribute('data-theme',localStorage.theme);
+		} catch(e) {
+			console.error(e);
+		}
+	</script>
+
+	%svelte.head%
+</head>
+
+<body>
+	<div id="svelte">%svelte.body%</div>
+</body>
+
 </html>
