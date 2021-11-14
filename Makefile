@@ -2,12 +2,12 @@
 .PHONY: statik all
 
 all:
-	$(MAKE) svelte
+	$(MAKE) frontend
 	go build -o Shifer ./main.go
 
-svelte:
-	cd web && yarn && yarn build && cd -
+frontend:
+	cd frontend && yarn && yarn build && cd -
 	statik -src=./web/build
 
 clean:
-	rm -rf ./statik ./web/build
+	rm -rf ./statik ./frontend/build
