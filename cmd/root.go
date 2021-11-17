@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/leishi1313/Shifter/route"
 	"github.com/leishi1313/Shifter/scheduler"
@@ -21,8 +22,8 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		scheduler.Run()
 
-		addr := viper.GetString("address")
-		port := viper.GetString("port")
+		addr := viper.GetString("web.bind")
+		port := viper.GetString("web.port")
 
 		router := route.Init()
 		router.Logger.Fatal(router.Start(fmt.Sprintf("%s:%s", addr, port)))
@@ -45,8 +46,8 @@ func init() {
 
 	flags.BoolP("toggle", "t", false, "Help message for toggle")
 
-	flags.StringP("address", "a", "127.0.0.1", "address to listen on")
-	flags.StringP("port", "p", "8000", "port to listen on")
+	flags.StringP("web.bind", "b", "127.0.0.1", "address to listen on")
+	flags.StringP("web.port", "p", "8000", "port to listen on")
 
 	viper.BindPFlags(flags)
 }
@@ -63,6 +64,9 @@ func initConfig() {
 		viper.SetConfigType("yaml")
 	}
 
+	viper.SetEnvPrefix("Shifter")
+	replacer := strings.NewReplacer(".", "_")
+	viper.SetEnvKeyReplacer(replacer)
 	viper.AutomaticEnv() // read in environment variables that match
 
 	// If a config file is found, read it in.
