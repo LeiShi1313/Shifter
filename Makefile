@@ -1,5 +1,5 @@
 .ONESHELL:
-.PHONY: statik all
+.PHONY: frontend all
 
 all:
 	$(MAKE) frontend
@@ -7,7 +7,7 @@ all:
 
 frontend:
 	cd frontend && yarn && yarn build && cd -
-	statik -src=./web/build
+	statik -src=./frontend/build
 
 clean:
 	rm -rf ./statik ./frontend/build

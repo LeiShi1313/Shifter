@@ -1,8 +1,6 @@
 package scheduler
 
 import (
-	"fmt"
-
 	"github.com/jasonlvhit/gocron"
 )
 
